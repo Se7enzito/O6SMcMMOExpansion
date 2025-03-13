@@ -1,0 +1,6 @@
+name: O6SMcMMOExpansion
+version: '${project.version}'
+main: org.bernardo.o6smcmmoexpansion.O6SMcMMOExpansion
+author: Se7enzito
+commands:
+  forcestatus:
