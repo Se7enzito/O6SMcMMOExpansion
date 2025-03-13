@@ -1,20 +1,18 @@
 package org.bernardo.o6smcmmoexpansion.stats.APIs;
 
-import com.gmail.nossr50.api.AbilityAPI;
 import com.gmail.nossr50.api.ExperienceAPI;
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import org.bernardo.o6smcmmoexpansion.APIs.HeadsAPI;
 import org.bernardo.o6smcmmoexpansion.APIs.StormFactionsManager;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class StatsAPI {
 
@@ -41,6 +39,15 @@ public class StatsAPI {
             color = ChatColor.DARK_PURPLE;
         } else {
             color = ChatColor.DARK_GRAY;
+        }
+
+        if (uuid == null) {
+            itemStack = new ItemStack(Material.BARRIER);
+
+            display = "" + color + posicao + "° " + ChatColor.YELLOW + "Ninguém";
+            lore = Arrays.asList(ChatColor.GRAY + "Status Total: " + ChatColor.GREEN + 0, "", ChatColor.GRAY + "Nenhuma facção foi encontrada nesta posição.");
+        } else {
+
         }
 
         return null;
@@ -72,7 +79,7 @@ public class StatsAPI {
             lore = Arrays.asList(ChatColor.GRAY + "Status Total: " + ChatColor.GREEN + 0, "", ChatColor.GRAY + "Nenhum player foi encontrado nesta posição!");
         } else {
             name = player.getName();
-            int status = 0;
+            int status = ExperienceAPI.getPowerLevel(player);
 
             itemStack = HeadsAPI.getPlayerSkull(name);
 

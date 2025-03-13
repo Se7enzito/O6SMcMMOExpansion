@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
@@ -60,7 +61,7 @@ public class StatsTemplate implements Listener {
     public void abrirMenuTop(Player player, String tipo) {
         Inventory inventory;
 
-        List<Integer> posicoesTop = Arrays.asList(21, 22, 23, 28, 29, 30, 31, 32, 33, 34);
+        List<Integer> posicoesTop = Arrays.asList(12, 13, 14, 19, 20, 21, 22, 23, 24, 25);
 
         List<String> factionsUUID;
         List<Player> playersTop;
@@ -95,11 +96,11 @@ public class StatsTemplate implements Listener {
             inventory = Bukkit.createInventory(null, 5 * 9, MENU_TOP_FACTIONS);
         }
 
-        inventory.setItem(36,statsAPI.itemVoltar());
+        inventory.setItem(36, statsAPI.itemVoltar());
 
-        if (tipo.equalsIgnoreCase("Faction")) {
+        if (tipo.equalsIgnoreCase("Factions")) {
             for (int posicao : posicoesTop) {
-                inventory.setItem(posicao,statsAPI.itemFactionTop(1,null));
+                inventory.setItem(posicao, statsAPI.itemFactionTop(1, null));
             }
 
             player.openInventory(inventory);
@@ -129,17 +130,47 @@ public class StatsTemplate implements Listener {
                     return;
                 }
 
-                String display = meta.getDisplayName();
+                ItemStack itemStack = e.getCurrentItem();
                 Player player = (Player) e.getWhoClicked();
 
                 player.closeInventory();
+
+                if (itemStack.equals(statsAPI.itemTopPlayer())) {
+                    abrirMenuTop(player,"Players");
+                } else if (itemStack.equals(statsAPI.itemTopFactions())) {
+                    abrirMenuTop(player,"Factions");
+                } else if (itemStack.equals(statsAPI.itemMining(player))) {
+                    abrirMenuTop(player,"Mining");
+                } else if (itemStack.equals(statsAPI.itemAcrobatics(player))) {
+                    abrirMenuTop(player,"Acrobatics");
+                } else if (itemStack.equals(statsAPI.itemAlchemy(player))) {
+                    abrirMenuTop(player,"Alchemy");
+                } else if (itemStack.equals(statsAPI.itemArchery(player))) {
+                    abrirMenuTop(player,"Archery");
+                } else if (itemStack.equals(statsAPI.itemAxes(player))) {
+                    abrirMenuTop(player,"Axes");
+                } else if (itemStack.equals(statsAPI.itemExcavation(player))) {
+                    abrirMenuTop(player,"Excavation");
+                } else if (itemStack.equals(statsAPI.itemFishing(player))) {
+                    abrirMenuTop(player,"Fishing");
+                } else if (itemStack.equals(statsAPI.itemHerbalism(player))) {
+                    abrirMenuTop(player,"Herbalism");
+                } else if (itemStack.equals(statsAPI.itemRepair(player))) {
+                    abrirMenuTop(player,"Repair");
+                } else if (itemStack.equals(statsAPI.itemSwords(player))) {
+                    abrirMenuTop(player,"Swords");
+                } else if (itemStack.equals(statsAPI.itemUnarmed(player))) {
+                    abrirMenuTop(player,"Unarmed");
+                } else if (itemStack.equals(statsAPI.itemWoodcutting(player))) {
+                    abrirMenuTop(player,"Woodcutting");
+                }
             } else if (e.getView().getTitle().equalsIgnoreCase(MENU_TOP_PLAYERS) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_ACROBATICS) ||
-            e.getView().getTitle().equalsIgnoreCase(MENU_TOP_ALCHEMY) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_ARCHERY) ||
-            e.getView().getTitle().equalsIgnoreCase(MENU_TOP_AXES) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_EXCAVATION) ||
-            e.getView().getTitle().equalsIgnoreCase(MENU_TOP_FISHING) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_HERBALISM) ||
-            e.getView().getTitle().equalsIgnoreCase(MENU_TOP_REPAIR) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_SWORDS) ||
-            e.getView().getTitle().equalsIgnoreCase(MENU_TOP_UNARMED) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_WOODCUTTING) ||
-            e.getView().getTitle().equalsIgnoreCase(MENU_TOP_MINING) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_FACTIONS)) {
+                    e.getView().getTitle().equalsIgnoreCase(MENU_TOP_ALCHEMY) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_ARCHERY) ||
+                    e.getView().getTitle().equalsIgnoreCase(MENU_TOP_AXES) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_EXCAVATION) ||
+                    e.getView().getTitle().equalsIgnoreCase(MENU_TOP_FISHING) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_HERBALISM) ||
+                    e.getView().getTitle().equalsIgnoreCase(MENU_TOP_REPAIR) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_SWORDS) ||
+                    e.getView().getTitle().equalsIgnoreCase(MENU_TOP_UNARMED) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_WOODCUTTING) ||
+                    e.getView().getTitle().equalsIgnoreCase(MENU_TOP_MINING) || e.getView().getTitle().equalsIgnoreCase(MENU_TOP_FACTIONS)) {
                 e.setCancelled(true);
 
                 if (e.getCurrentItem() == null || !e.getCurrentItem().hasItemMeta()) {
