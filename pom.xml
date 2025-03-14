@@ -84,20 +84,6 @@
             <version>3.47.1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.stormfactions</groupId>
-            <artifactId>StormFactionsAPI</artifactId>
-            <version>1.0.0</version>
-            <scope>system</scope>
-            <systemPath>/home/bernardo/Documentos/Java_APis/StormFactionsAPI.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.stormplugins</groupId>
-            <artifactId>StormPlugins</artifactId>
-            <version>1.0.0</version>
-            <scope>system</scope>
-            <systemPath>/home/bernardo/Documentos/Java_APis/StormPlugins.jar</systemPath>
-        </dependency>
-        <dependency>
             <groupId>com.actionbarapi</groupId>
             <artifactId>ActionbarAPI</artifactId>
             <version>1.0.0</version>

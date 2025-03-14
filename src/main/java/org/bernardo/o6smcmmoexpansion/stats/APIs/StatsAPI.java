@@ -3,7 +3,6 @@ package org.bernardo.o6smcmmoexpansion.stats.APIs;
 import com.gmail.nossr50.api.ExperienceAPI;
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import org.bernardo.o6smcmmoexpansion.APIs.HeadsAPI;
-import org.bernardo.o6smcmmoexpansion.APIs.StormFactionsManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,91 +10,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class StatsAPI {
-
-    private final StormFactionsManager factionsManager;
-
-    public StatsAPI() {
-        factionsManager = new StormFactionsManager();
-    }
-
-    public ItemStack itemFactionTop(int posicao, String uuid) {
-        String name;
-
-        ChatColor color;
-        String display;
-        List<String> lore;
-
-        ItemStack itemStack;
-
-        if (posicao == 1) {
-            color = ChatColor.GOLD;
-        } else if (posicao == 2) {
-            color = ChatColor.WHITE;
-        } else if (posicao == 3) {
-            color = ChatColor.DARK_PURPLE;
-        } else {
-            color = ChatColor.DARK_GRAY;
-        }
-
-        if (uuid == null) {
-            itemStack = new ItemStack(Material.BARRIER);
-
-            display = "" + color + posicao + "° " + ChatColor.YELLOW + "Ninguém";
-            lore = Arrays.asList(ChatColor.GRAY + "Status Total: " + ChatColor.GREEN + 0, "", ChatColor.GRAY + "Nenhuma facção foi encontrada nesta posição.");
-        } else {
-
-        }
-
-        return null;
-    }
-
-    public ItemStack itemPlayerTop(int posicao, Player player) {
-        String name;
-
-        ChatColor color;
-        String display;
-        List<String> lore;
-
-        ItemStack itemStack;
-
-        if (posicao == 1) {
-            color = ChatColor.GOLD;
-        } else if (posicao == 2) {
-            color = ChatColor.WHITE;
-        } else if (posicao == 3) {
-            color = ChatColor.DARK_PURPLE;
-        } else {
-            color = ChatColor.DARK_GRAY;
-        }
-
-        if (player == null) {
-            itemStack = new ItemStack(Material.WEB);
-
-            display =  "" + color + posicao + "° " + ChatColor.YELLOW + "Ninguém";
-            lore = Arrays.asList(ChatColor.GRAY + "Status Total: " + ChatColor.GREEN + 0, "", ChatColor.GRAY + "Nenhum player foi encontrado nesta posição!");
-        } else {
-            name = player.getName();
-            int status = ExperienceAPI.getPowerLevel(player);
-
-            itemStack = HeadsAPI.getPlayerSkull(name);
-
-            display = "" + color + posicao + "° " + ChatColor.YELLOW + name;
-            lore = Collections.singletonList(ChatColor.GRAY + "Status Total: " + ChatColor.GREEN + status);
-        }
-
-        ItemMeta meta = itemStack.getItemMeta();
-
-        meta.setDisplayName(display);
-        meta.setLore(lore);
-
-        itemStack.setItemMeta(meta);
-
-        return itemStack;
-    }
 
     public ItemStack itemVoltar() {
         ItemStack itemStack = new ItemStack(Material.ARROW);
@@ -132,30 +48,6 @@ public class StatsAPI {
                 ChatColor.GRAY + "Lenhador: " + ChatColor.GREEN + ExperienceAPI.getLevel(player,SkillType.WOODCUTTING.getName())));
 
 
-
-        itemStack.setItemMeta(meta);
-
-        return itemStack;
-    }
-
-    public ItemStack itemTopPlayer() {
-        ItemStack itemStack = new ItemStack(Material.DIAMOND);
-        ItemMeta meta = itemStack.getItemMeta();
-
-        meta.setDisplayName(ChatColor.YELLOW + "Rank Status Players");
-        meta.setLore(Arrays.asList(ChatColor.GRAY + "Menu com todos os 10 players com status mais altos", "", ChatColor.GRAY + "Clique para abrir o menu"));
-
-        itemStack.setItemMeta(meta);
-
-        return itemStack;
-    }
-
-    public ItemStack itemTopFactions() {
-        ItemStack itemStack = new ItemStack(Material.EMERALD);
-        ItemMeta meta = itemStack.getItemMeta();
-
-        meta.setDisplayName(ChatColor.YELLOW + "Rank Status Facções");
-        meta.setLore(Arrays.asList(ChatColor.GRAY + "Menu com todas as 10 facções com status mais altos", "", ChatColor.GRAY + "Clique para abrir o menu"));
 
         itemStack.setItemMeta(meta);
 
